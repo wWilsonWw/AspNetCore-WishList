@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WishList.Data;
 using WishList.Models;
 
@@ -36,8 +37,9 @@ namespace WishList.Controllers
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var item = _context.Items.Where(item => item.Id == id).FirstOrDefault();
-            _context.Items.Remove(item);
+         
+           
+            _context.Items.Remove(_context.Items.FirstOrDefault(e => e.Id.Equals(1)));
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
